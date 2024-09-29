@@ -214,16 +214,10 @@ MyChessSquare >> renderBishop: aPiece [
 
 { #category : 'rendering' }
 MyChessSquare >> renderKing: aPiece [
+	| pieceSymbol |
+	pieceSymbol := aPiece isWhite ifTrue: [ 'K' ] ifFalse: [ 'L' ].
+	^ color isBlack ifTrue: [ pieceSymbol asLowercase ] ifFalse: [ pieceSymbol ].
 
-	^ aPiece isWhite
-		  ifFalse: [
-			  color isBlack
-				  ifFalse: [ 'L' ]
-				  ifTrue: [ 'l' ] ]
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'K' ]
-				  ifTrue: [ 'k' ] ]
 ]
 
 { #category : 'rendering' }
