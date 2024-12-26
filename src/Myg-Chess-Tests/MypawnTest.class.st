@@ -54,6 +54,22 @@ MypawnTest >> testMoves [
 ]
 
 { #category : 'tests' }
+MypawnTest >> testPawnIsBlack [ [
+    | blackPawn |
+    blackPawn := MyPawn black .
+	self assert: blackPawn isBlack .
+]
+]
+
+{ #category : 'tests' }
+MypawnTest >> testPawnIsWhite [ [
+    | whitePawn |  
+    whitePawn := MyPawn white .
+	self assert: whitePawn isWhite.
+]
+]
+
+{ #category : 'tests' }
 MypawnTest >> testReplacePiece [ [
     | board square oldPiece newPiece |
     
