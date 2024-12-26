@@ -80,6 +80,12 @@ MyPawn >> renderPieceOn: aSquare [
 	^ aSquare renderPawn: self
 ]
 
+{ #category : 'promote' }
+MyPawn >> replacePiece: aNewPiece [ [ 
+	self board at: self square name put: aNewPiece .
+]
+]
+
 { #category : 'rendering' }
 MyPawn >> targetSquaresLegal: aBoolean [
 	| forwardSquare doubleForwardSquare leftDiagonal rightDiagonal forwardMoves enPassantMoves leftSquare rightSquare|

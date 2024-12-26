@@ -53,6 +53,22 @@ MypawnTest >> testMoves [
 	self deny: (squares includes: (board at: 'e5')).
 ]
 
+{ #category : 'tests' }
+MypawnTest >> testReplacePiece [ [
+    | board square oldPiece newPiece |
+    
+    board := MyChessBoard empty.
+	 board initializeSquares. 
+    oldPiece := MyPawn black.
+    newPiece := MyRook black.
+	 square := board at:'d4'.
+    board  at: 'd4' put: oldPiece.
+    self assert: (square hasPiece ) equals: false.
+	 oldPiece replacePiece: newPiece.
+    self assert: square contents equals: newPiece .
+]
+]
+
 { #category : ' tests' }
 MypawnTest >> testfirsMoves [
 	| pawn board squares |
