@@ -74,6 +74,17 @@ MyPawn >> isInInitialPosition [
 
 ]
 
+{ #category : 'as yet unclassified' }
+MyPawn >> promote [ [
+
+	Transcript show: 'Square name: ', (self square name); 
+	cr.
+	
+    ^ (self isWhite and: [self square name endsWith: '8'])
+        or: [self isBlack and: [self square name endsWith: '1']].
+]
+]
+
 { #category : 'rendering' }
 MyPawn >> renderPieceOn: aSquare [ 
 	

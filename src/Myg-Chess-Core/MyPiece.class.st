@@ -170,9 +170,18 @@ MyPiece >> legalTargetSquares [
 { #category : 'path commands' }
 MyPiece >> moveTo: aSquare [
 
+Transcript
+		show: 'Legal squares: '
+			, (self legalTargetSquares collect: [ :sq | sq name ]) asString;
+		cr.
 	(self legalTargetSquares includes: aSquare) ifFalse: [ ^ self ].
 
 	square emptyContents.
+	
+Transcript
+		show: 'Moving to: ' , aSquare name;
+		cr.
+		
 	square := aSquare.
 	aSquare contents: self
 ]

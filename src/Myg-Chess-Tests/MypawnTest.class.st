@@ -5,6 +5,19 @@ Class {
 	#package : 'Myg-Chess-Tests'
 }
 
+{ #category : 'tests' }
+MypawnTest >> testBlackPawnShouldNotPromote [ [
+    | blackPawn board promotedBlack |
+    
+    board := MyChessBoard empty.
+	 board initializeSquares. 
+    blackPawn := MyPawn black.
+    board at: 'd2' put: blackPawn.    
+    promotedBlack := blackPawn promote.
+    self deny: promotedBlack.
+]
+]
+
 { #category : ' tests' }
 MypawnTest >> testCaptureDiagonly [
 	| pawn board squares |
@@ -82,6 +95,19 @@ MypawnTest >> testReplacePiece [ [
     self assert: (square hasPiece ) equals: false.
 	 oldPiece replacePiece: newPiece.
     self assert: square contents equals: newPiece .
+]
+]
+
+{ #category : 'tests' }
+MypawnTest >> testWhitePawnShouldPromote [ [
+	| whitePawn board promotedWhite |
+	board := MyChessBoard empty.
+	board initializeSquares. 
+	whitePawn := MyPawn white.
+	board at: 'd7' put: whitePawn.
+	whitePawn moveTo: 'd8'.
+	promotedWhite := whitePawn promote.
+	self assert: promotedWhite 
 ]
 ]
 
