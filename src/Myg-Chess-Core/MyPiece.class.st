@@ -37,6 +37,12 @@ MyPiece >> board [
 	^ square board
 ]
 
+{ #category : 'as yet unclassified' }
+MyPiece >> choosePromotion [ [
+	^self
+]
+]
+
 { #category : 'rendering' }
 MyPiece >> collectSquares: aBlock [
 
@@ -119,6 +125,12 @@ MyPiece >> downRightDiagonalLegal: aBoolean [
 		  legal: aBoolean
 ]
 
+{ #category : 'as yet unclassified' }
+MyPiece >> genericPromotion [ [ 
+	^self isPromotionPossible
+	 ]
+]
+
 { #category : 'accessing' }
 MyPiece >> id [
 
@@ -141,6 +153,12 @@ MyPiece >> isKing [
 MyPiece >> isPiece [
 	
 	^ true
+]
+
+{ #category : 'testing' }
+MyPiece >> isPromotionPossible [ [ 
+	^false
+	 ]
 ]
 
 { #category : 'testing' }
@@ -169,21 +187,17 @@ MyPiece >> legalTargetSquares [
 
 { #category : 'path commands' }
 MyPiece >> moveTo: aSquare [
-
-Transcript
-		show: 'Legal squares: '
-			, (self legalTargetSquares collect: [ :sq | sq name ]) asString;
-		cr.
 	(self legalTargetSquares includes: aSquare) ifFalse: [ ^ self ].
-
+	(self genericPromotion ) ifTrue: [ self choosePromotion ].
 	square emptyContents.
-	
-Transcript
-		show: 'Moving to: ' , aSquare name;
-		cr.
-		
 	square := aSquare.
 	aSquare contents: self
+]
+
+{ #category : 'as yet unclassified' }
+MyPiece >> promote [ [ 
+ ^ 0
+]
 ]
 
 { #category : 'rendering' }

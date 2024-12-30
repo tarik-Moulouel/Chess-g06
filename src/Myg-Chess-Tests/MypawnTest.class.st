@@ -12,8 +12,8 @@ MypawnTest >> testBlackPawnShouldNotPromote [ [
     board := MyChessBoard empty.
 	 board initializeSquares. 
     blackPawn := MyPawn black.
-    board at: 'd2' put: blackPawn.    
-    promotedBlack := blackPawn promote.
+    board at: 'd3' put: blackPawn.    
+    promotedBlack := blackPawn canBePromoted .
     self deny: promotedBlack.
 ]
 ]
@@ -92,7 +92,6 @@ MypawnTest >> testReplacePiece [ [
     newPiece := MyRook black.
 	 square := board at:'d4'.
     board  at: 'd4' put: oldPiece.
-    self assert: (square hasPiece ) equals: false.
 	 oldPiece replacePiece: newPiece.
     self assert: square contents equals: newPiece .
 ]
@@ -105,8 +104,7 @@ MypawnTest >> testWhitePawnShouldPromote [ [
 	board initializeSquares. 
 	whitePawn := MyPawn white.
 	board at: 'd7' put: whitePawn.
-	whitePawn moveTo: 'd8'.
-	promotedWhite := whitePawn promote.
+	promotedWhite := whitePawn canBePromoted.
 	self assert: promotedWhite 
 ]
 ]

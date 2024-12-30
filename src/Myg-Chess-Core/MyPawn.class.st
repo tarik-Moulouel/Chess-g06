@@ -21,6 +21,13 @@ MyPawn >> canBeCapturedEnPassant: aBoolean [ [
 ]
 
 { #category : 'testing' }
+MyPawn >> canBePromoted [ [
+    ^(self isWhite and: [self square up name endsWith: '8'])
+        or: [self isBlack and: [self square down name endsWith: '1']].
+]
+]
+
+{ #category : 'testing' }
 MyPawn >> canCaptureDiagonally: aSquare [
 	^ aSquare notNil and: [ aSquare hasPiece and: [ aSquare contents color ~= self color ] ].
 
@@ -41,6 +48,32 @@ MyPawn >> captureMoves [
 	^ { leftDiagonal. rightDiagonal }
 		select: [ :s | s notNil and: [ s hasPiece and: [ s contents color ~= self color ] ] ] .
 
+]
+
+{ #category : 'as yet unclassified' }
+MyPawn >> choosePromotion [ [
+|window knight bishop rook queen pane|
+window := BlSpace new.
+pane:= ToPane horizontal .
+knight:= ToButton new.
+knight labelText: 'knight'.
+bishop:=ToButton new.
+bishop labelText: 'bishop'.
+rook :=ToButton new.
+rook labelText: 'rook'.
+queen :=ToButton new.
+queen labelText: 'queen'.
+queen whenClickedDo: [ self replacePiece: MyQueen new. window close.].
+rook whenClickedDo: [ self replacePiece: MyRook new. window close.].
+bishop whenClickedDo: [ self replacePiece: MyBishop new. window close.].
+knight whenClickedDo: [ self replacePiece: MyKnight new. window close.].
+pane addChild: knight .
+pane addChild: bishop .
+pane addChild: rook .
+pane addChild: queen .
+window root addChild: pane.
+window show
+]
 ]
 
 { #category : 'accessing' }
@@ -75,13 +108,8 @@ MyPawn >> isInInitialPosition [
 ]
 
 { #category : 'as yet unclassified' }
-MyPawn >> promote [ [
-
-	Transcript show: 'Square name: ', (self square name); 
-	cr.
-	
-    ^ (self isWhite and: [self square name endsWith: '8'])
-        or: [self isBlack and: [self square name endsWith: '1']].
+MyPawn >> promote [ [ 
+ ^ 2
 ]
 ]
 
@@ -93,6 +121,7 @@ MyPawn >> renderPieceOn: aSquare [
 
 { #category : 'promote' }
 MyPawn >> replacePiece: aNewPiece [ [ 
+	aNewPiece color: self color.
 	self board at: self square name put: aNewPiece .
 ]
 ]
