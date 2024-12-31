@@ -83,18 +83,18 @@ MypawnTest >> testPawnIsWhite [ [
 ]
 
 { #category : 'tests' }
-MypawnTest >> testReplacePiece [ [
-    | board square oldPiece newPiece |
-    
-    board := MyChessBoard empty.
-	 board initializeSquares. 
-    oldPiece := MyPawn black.
-    newPiece := MyRook black.
-	 square := board at:'d4'.
-    board  at: 'd4' put: oldPiece.
-	 oldPiece replacePiece: newPiece.
-    self assert: square contents equals: newPiece .
-]
+MypawnTest >> testWhitePawnPromotion [ [
+	| targetedSquarePromotion whitePawn board promotedPiece |
+	board := MyChessBoard empty.
+	board initialize.
+	whitePawn := MyPawn white.
+	targetedSquarePromotion := board at: 'c8'.
+	board at: 'c7' put: whitePawn.
+	whitePawn moveTo: targetedSquarePromotion.
+	promotedPiece := whitePawn promoteTo: MyQueen.
+	self assert: (promotedPiece isKindOf: MyQueen).
+	self assert: targetedSquarePromotion contents equals: promotedPiece
+	]
 ]
 
 { #category : 'tests' }
@@ -103,7 +103,7 @@ MypawnTest >> testWhitePawnShouldPromote [ [
 	board := MyChessBoard empty.
 	board initializeSquares. 
 	whitePawn := MyPawn white.
-	board at: 'd7' put: whitePawn.
+	board at: 'd8' put: whitePawn.
 	promotedWhite := whitePawn canBePromoted.
 	self assert: promotedWhite 
 ]

@@ -39,7 +39,7 @@ MyPiece >> board [
 
 { #category : 'as yet unclassified' }
 MyPiece >> choosePromotion [ [
-	^self
+	^ self
 ]
 ]
 
@@ -127,7 +127,7 @@ MyPiece >> downRightDiagonalLegal: aBoolean [
 
 { #category : 'as yet unclassified' }
 MyPiece >> genericPromotion [ [ 
-	^self isPromotionPossible
+	^self isPromotionPossible.
 	 ]
 ]
 
@@ -188,16 +188,10 @@ MyPiece >> legalTargetSquares [
 { #category : 'path commands' }
 MyPiece >> moveTo: aSquare [
 	(self legalTargetSquares includes: aSquare) ifFalse: [ ^ self ].
-	(self genericPromotion ) ifTrue: [ self choosePromotion ].
 	square emptyContents.
 	square := aSquare.
-	aSquare contents: self
-]
-
-{ #category : 'as yet unclassified' }
-MyPiece >> promote [ [ 
- ^ 0
-]
+	aSquare contents: self.
+	(self genericPromotion ) ifTrue: [ self choosePromotion ].
 ]
 
 { #category : 'rendering' }

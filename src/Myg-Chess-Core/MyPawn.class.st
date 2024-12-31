@@ -53,8 +53,8 @@ MyPawn >> captureMoves [
 { #category : 'as yet unclassified' }
 MyPawn >> choosePromotion [ [
 |window knight bishop rook queen pane|
+pane:= ToPane vertical .
 window := BlSpace new.
-pane:= ToPane horizontal .
 knight:= ToButton new.
 knight labelText: 'knight'.
 bishop:=ToButton new.
@@ -63,10 +63,10 @@ rook :=ToButton new.
 rook labelText: 'rook'.
 queen :=ToButton new.
 queen labelText: 'queen'.
-queen whenClickedDo: [ self replacePiece: MyQueen new. window close.].
-rook whenClickedDo: [ self replacePiece: MyRook new. window close.].
-bishop whenClickedDo: [ self replacePiece: MyBishop new. window close.].
-knight whenClickedDo: [ self replacePiece: MyKnight new. window close.].
+queen whenClickedDo: [ self promoteTo: MyQueen new. window close.].
+rook whenClickedDo: [ self promoteTo: MyRook new. window close.].
+bishop whenClickedDo: [ self promoteTo: MyBishop new. window close.].
+knight whenClickedDo: [ self promoteTo: MyKnight new. window close.].
 pane addChild: knight .
 pane addChild: bishop .
 pane addChild: rook .
@@ -108,8 +108,11 @@ MyPawn >> isInInitialPosition [
 ]
 
 { #category : 'as yet unclassified' }
-MyPawn >> promote [ [ 
- ^ 2
+MyPawn >> promoteTo: aPiece [ [
+	aPiece color: self color.
+	aPiece square: square.
+	square contents: aPiece.
+	^ aPiece
 ]
 ]
 
@@ -117,13 +120,6 @@ MyPawn >> promote [ [
 MyPawn >> renderPieceOn: aSquare [ 
 	
 	^ aSquare renderPawn: self
-]
-
-{ #category : 'promote' }
-MyPawn >> replacePiece: aNewPiece [ [ 
-	aNewPiece color: self color.
-	self board at: self square name put: aNewPiece .
-]
 ]
 
 { #category : 'rendering' }
