@@ -2,11 +2,24 @@ Class {
 	#name : 'MyPawn',
 	#superclass : 'MyPiece',
 	#instVars : [
-		'canBeCapturedEnPassant'
+		'canBeCapturedEnPassant',
+		'blockPromotion'
 	],
 	#category : 'Myg-Chess-Core',
 	#package : 'Myg-Chess-Core'
 }
+
+{ #category : 'accessing' }
+MyPawn >> blockPromotion [ 
+	^blockPromotion 
+]
+
+{ #category : 'accessing' }
+MyPawn >> blockPromotion: aBlock [ [
+
+	blockPromotion := aBlock
+]
+]
 
 { #category : 'accessing' }
 MyPawn >> canBeCapturedEnPassant [ [
@@ -107,6 +120,18 @@ MyPawn >> isInInitialPosition [
 	^ initialPositions includes: currentPosition.
 
 
+]
+
+{ #category : 'accessing' }
+MyPawn >> lastRowPromotion [ [
+
+	self canBePromoted ifTrue: [
+		blockPromotion value: self value: {
+				MyQueen.
+				MyKnight.
+				MyRook.
+				MyBishop } ]
+]
 ]
 
 { #category : 'as yet unclassified' }
