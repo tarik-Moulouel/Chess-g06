@@ -22,8 +22,10 @@ MyPawn >> canBeCapturedEnPassant: aBoolean [ [
 
 { #category : 'testing' }
 MyPawn >> canBePromoted [ [
-    ^(self isWhite and: [self square up name endsWith: '8'])
-        or: [self isBlack and: [self square down name endsWith: '1']].
+
+	^ self isWhite
+		  ifTrue: [ square name endsWith: '8' ]
+		  ifFalse: [ square name endsWith: '1' ]
 ]
 ]
 

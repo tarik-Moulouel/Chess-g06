@@ -37,6 +37,12 @@ MyPiece >> board [
 	^ square board
 ]
 
+{ #category : 'testing' }
+MyPiece >> canBePromoted [ [ 
+	^ false
+	 ]
+]
+
 { #category : 'as yet unclassified' }
 MyPiece >> choosePromotion [ [
 	^ self
