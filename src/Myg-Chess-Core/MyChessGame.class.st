@@ -56,6 +56,25 @@ MyChessGame >> checkForMate [
 	blackPlayer king isCheckMated ifTrue: [ self halt: 'White wins!' ].
 ]
 
+{ #category : 'as yet unclassified' }
+MyChessGame >> displayPromotionChoicesFor: aPawn withOptions: options [ [
+	| window pane |
+	pane := ToPane vertical.
+	window := BlSpace new.
+	options do: [ :option |
+		| button |
+		button := ToButton new.
+		button labelText: option name.
+		button whenClickedDo: [
+			aPawn promoteTo: option.
+			window close ].
+		pane addChild: button ].
+	window root addChild: pane.
+	window show
+]
+
+]
+
 { #category : 'initialization' }
 MyChessGame >> initialize [
 
@@ -116,6 +135,9 @@ MyChessGame >> initializeFromFENGame: aFENGame [
 	self addChild: infoPane.
 	infoPane addChild: movesLabel.
 	infoPane addChild: button.
+	board pieces do: [ :piece |
+		(piece isKindOf: MyPawn) ifTrue: [
+			self setupPromotionForAPawn: piece ] ].
 
 	self layout: BlLinearLayout horizontal.
 	self constraintsDo: [ :aLayoutConstraints |
@@ -195,5 +217,14 @@ MyChessGame >> resetEnPassantFlags [
     | allPawns |
     allPawns := board pieces select: [ :piece | piece id = 'P' ].
     allPawns do: [ :pawn | pawn canBeCapturedEnPassant: false ].
+
+]
+
+{ #category : 'as yet unclassified' }
+MyChessGame >> setupPromotionForAPawn: aPawn [ [
+	aPawn blockPromotion: [ :pawn :options |
+        self displayPromotionChoicesFor: pawn withOptions: options
+    ].
+]
 
 ]
