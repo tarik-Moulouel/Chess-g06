@@ -1,6 +1,7 @@
 
 # Introduction
-Ce dépôt contient le résultat de mon travail sur le Kata Fix Pawn Moves pour le projet d’échecs Chess. 
+Ce dépôt contient le résultat de notre travail sur le Kata Fix Pawn Moves (mohamed yassine aloui) ,Add pawn promotion (karim el jisr ) ,Refactor piece rendering
+(tarik moulel ) pour le projet d’échecs Chess. 
 L’objectif principal était de déboguer et tester les déplacements spécifiques des pions, 
 y compris leur mouvement initial de deux cases, la capture en diagonale et la capture en passant.
 
@@ -78,4 +79,4 @@ testEnPassantMove : tente de s’assurer que la capture en passant fonctionne, m
 Grâce à ce kata, j’ai amélioré la couverture de tests pour les déplacements des pions et appliqué diverses techniques de débogage.
  Les fonctionnalités standard (déplacements avant, capture diagonale, double pas) sont abouties, tandis que l’en passant demeure à finaliser.
 
-Merci de votre lecture. N’hésitez pas à consulter le code et les tests associés dans ce dépôt :[text](https://github.com/tarik-Moulouel/Chess-g06/tree/main). Toute contribution ou suggestion pour compléter l’en passant est la bienvenue !
+Merci de votre lecture. N’hésitez pas à consulter le code et les tests associés dans ce dépôt https://github.com/tarik-Moulouel/Chess-g06/tree/main. Toute contribution ou suggestion pour compléter l’en passant est la bienvenue !
