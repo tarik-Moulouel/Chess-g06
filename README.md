@@ -80,3 +80,92 @@ Grâce à ce kata, j’ai amélioré la couverture de tests pour les déplacemen
  Les fonctionnalités standard (déplacements avant, capture diagonale, double pas) sont abouties, tandis que l’en passant demeure à finaliser.
 
 Merci de votre lecture. N’hésitez pas à consulter le code et les tests associés dans ce dépôt https://github.com/tarik-Moulouel/Chess-g06/tree/main. Toute contribution ou suggestion pour compléter l’en passant est la bienvenue !
+
+
+# Kata PawnPromotion (Karim EL JISR)
+
+## Introduction
+Dans le cadre de mon projet de jeu d’échecs développé en Pharo, j’ai choisi de travailler sur le Kata intitulé 
+Pawn Promotion (Promotion du Pion). Ce Kata illustre une mécanique essentielle des échecs : lorsqu’un pion atteint la dernière rangée 
+du plateau, il peut être promu en une autre pièce (dame, cavalier, fou ou tour). Ce choix de Kata m’a permis d’explorer 
+plusieurs concepts fondamentaux, tels que le test-driven development (TDD), la conception orientée objet, et la gestion des 
+interactions utilisateur.
+
+## Présentation du Kata
+Le Kata de la promotion du pion consiste à implémenter les étapes suivantes dans le jeu :
+
+1-Déplacements des pions : Comprendre les règles spécifiques du déplacement des pions, y compris leur progression vers l’avant et leurs captures diagonales.
+2-Détection des conditions de promotion : Déterminer le moment exact où un pion atteint la dernière rangée.
+3-Différenciation des pions par couleur : Ajouter une méthode isWhite pour différencier les pions blancs des pions noirs, car leur direction de déplacement diffère.
+4-Fenêtre de choix de promotion : Lorsqu’un pion atteint la dernière rangée, afficher une fenêtre permettant au joueur de choisir parmi les quatre types de promotion possibles :
+- Dame (Queen)
+- Cavalier (Knight)
+- Fou (Bishop)
+- Tour (Rook)
+5-Mise à jour de la pièce : Une fois le choix effectué, remplacer le pion par la pièce choisie, fermer la fenêtre, et poursuivre le jeu.
+
+### Étape 1 : Développement des tests initiaux
+J'ai commencé par regarder les tests effectuer par mon collegue Yassine qui a fait une approche TDD pour comprendre les règles de déplacement 
+des pions et vérifier leur comportement dans diverses situations: 
+* Déplacement en avant.
+* Capture en diagonale.
+* Arrivée à la dernière rangée.
+Ces tests m’ont aidé à définir les conditions nécessaires pour déclencher la promotion.
+
+### Étape 2 : Différenciation des pions par couleur
+J’ai ajouté une méthode isWhite pour permettre de différencier les pions blancs des noirs. Cela a été nécessaire pour gérer 
+correctement leurs déplacements respectifs (vers le haut pour les pions blancs et vers le bas pour les noirs).
+
+### Étape 3 : Fenêtre de promotion
+Une fois qu’un pion atteint la dernière rangée, une fenêtre s’ouvre pour afficher les quatre types de pièces disponibles pour la promotion. 
+La fenêtre est créée avec une logique interactive permettant au joueur de faire son choix, après quoi :
+
+* Le pion est remplacé par la nouvelle pièce.
+* La fenêtre se ferme automatiquement.
+
+### Étape 4 : Intégration dans la méthode moveTo
+J’ai modifié la méthode moveTo, définie dans la classe MyPiece, pour inclure les conditions de promotion en ajoutant :
+
+- (self genericPromotion) ifTrue: [self choosePromotion].
+
+### Difficultés rencontrées
+Problème avec l’évaluation de genericPromotion
+Lors de l’exécution du jeu, une erreur s’est produite indiquant que le receveur de la méthode doit être un booléen, 
+bien que genericPromotion soit déjà censé renvoyer un booléen. Cette erreur survient probablement en raison d’une mauvaise gestion 
+des retours de méthode ou d’un conflit dans le flux d’exécution.
+
+### Les methodes cree et implémenter dans la classe MyPiece : 
+- canBePromoted : retourne false car pas tout les pieces ont le droit de faire une promotion 
+- choosePromotion : retourne self pour savoir quelle piece demande de choisir sa promotion
+- isWhite : retourne la couleur white pour la piece
+- genericPromotion : execute la methode isPromotionPossible pour savoir si c'est possible de faire une promotion de la piece
+- isPromotionPossible : retourne false par default pour l'ensemble des piece
+- moveTo : l'avancement des pieces
+
+###  Les methodes cree et implémenter dans la classe MyPawn : 
+- getter et setter de blockPromotion : pour savoir lequelle des block est est block(square) de promotion
+- canBePromoted : donne le droit de faire une promotion
+- choosePromotion : choisi la promotion du pion en une piece comme le rook, bishop, queen, knight.
+- lastRowPromotion : detect la derniere ligne de qui permet de faire une promotion au pion
+- promoteTo: la methode qui donne la promotion des pions
+
+### Les tests créer pour les deux classes : 
+- testIsBlack
+- testIsWhite
+- testBlackPawnShouldNotPromote
+- testPawnIsBlack
+- testPawnIsWhite
+- testWhitePawnPromotion
+- testWhitePawnShouldPromote
+
+Le nom de chaque test est capable de nous faire comprendre le comportement de chaque test
+
+## Conclusion
+Ce Kata m’a permis d’approfondir mes connaissances en programmation orientée objet avec Pharo et en TDD. Bien que j’aie rencontré 
+des difficultés techniques, elles m’ont offert l’opportunité d’explorer des outils comme le débogueur et de consolider mes compétences 
+en gestion des erreurs.
+La prochaine étape consistera à corriger l’erreur dans moveTo, tester davantage les cas limites, et optimiser l’expérience utilisateur 
+lors du choix de promotion.
+
+## GitHub du projet : 
+https://github.com/tarik-Moulouel/Chess-g06
