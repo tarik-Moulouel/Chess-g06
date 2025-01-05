@@ -98,3 +98,15 @@ MyChessSquareTest >> testRenderBishop [ [
 	squareTest color: Color black.
 	self assert: (squareTest renderBishop: blackBishop) equals: 'v'. ]
 ]
+
+{ #category : 'tests' }
+MyChessSquareTest >> testRenderBlackKnightBlacksquare [ [
+	self assert: ((MyChessSquare black) renderKnight: (MyKnight black)) equals: 'm'
+]
+]
+
+{ #category : 'tests' }
+MyChessSquareTest >> testRenderBlackKnightWhiteSquare [ [
+	self assert: ((MyChessSquare white) renderKnight: (MyKnight black)) equals: 'M'
+]
+]
