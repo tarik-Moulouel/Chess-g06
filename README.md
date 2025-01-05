@@ -31,33 +31,33 @@ Une fenêtre s’ouvre alors, permettant d’interagir avec le plateau d’éche
 
 #  Kata « Fix Pawn Moves » Mohamed Yassine Aloui
 Objectif
-Debugging & Testing : L’idée est de corriger et tester les fonctionnalités liées aux pions
+ L’idée est de corriger et tester les fonctionnalités liées aux pions
  (mouvement d’une ou deux cases, capture diagonale, en passant, etc.).
 Approche
 Analyse & compréhension : J’ai d’abord exploré la structure du code (hiérarchie de classes, méthodes déjà existantes) 
 à l’aide des outils vus en cours (par ex. commentaire de code, navigateurs de classes, etc.).
 Découpage des fonctionnalités :
-Déplacement en avant d’une case.
-Déplacement de deux cases lorsqu’il s’agit du premier mouvement (test via isInitialPosition).
-Capture en diagonale.
-Gestion de la capture en passant.
+* Déplacement en avant d’une case.
+* Déplacement de deux cases lorsqu’il s’agit du premier mouvement (test via isInitialPosition).
+* Capture en diagonale.
+* Gestion de la capture en passant.
 Développement piloté par les tests : Pour chaque fonctionnalité, j’ai commencé par écrire ou ajuster les tests puis implémenter ou corriger le code correspondant.
 Utilisation des outils :
-XTDD (tests + debugger) pour itérer rapidement sur l’implémentation et la correction de bugs.
-Transcript / Debugger pour analyser le déroulement des coups et déboguer la partie en passant.
+* XTDD (tests + debugger) pour itérer rapidement sur l’implémentation et la correction de bugs.
+* Transcript / Debugger pour analyser le déroulement des coups et déboguer la partie en passant.
 Principales Méthodes (dans MyPawn et MyChessGame)
-isInInitialPosition : Détermine si le pion est encore sur sa ligne de départ, pour permettre le double pas.
-recordMovementOf: aPiece to: aSquare : Enregistre le mouvement dans l’historique, réinitialise l’en passant sur tous les autres pions (resetEnPassantFlags), 
+- isInInitialPosition : Détermine si le pion est encore sur sa ligne de départ, pour permettre le double pas.
+- recordMovementOf: aPiece to: aSquare : Enregistre le mouvement dans l’historique, réinitialise l’en passant sur tous les autres pions (resetEnPassantFlags), 
 puis vérifie si le pion vient de faire un double pas pour le marquer comme vulnérable à la capture en passant (canBeCapturedEnPassant: true).
-moveTo: aSquare : Méthode qui effectue le déplacement effectif d’une pièce vers une case donnée (vider la case d’origine, positionner la pièce sur la case destination). Pour le pion, j’ai essayé de surcharger cette méthode afin de personnaliser la logique de l’en passant.
-resetEnPassantFlags : Réinitialise l’indicateur canBeCapturedEnPassant sur tous les pions, afin de ne garder ce flag que pour le dernier pion ayant fait un double pas.
-canBeCapturedEnPassant : Attribut / indicateur booléen utilisé pour marquer un pion qui vient de faire un double pas et qui peut donc être capturé en passant au coup suivant.
+- moveTo: aSquare : Méthode qui effectue le déplacement effectif d’une pièce vers une case donnée (vider la case d’origine, positionner la pièce sur la case destination). Pour le pion, j’ai essayé de surcharger cette méthode afin de personnaliser la logique de l’en passant.
+- resetEnPassantFlags : Réinitialise l’indicateur canBeCapturedEnPassant sur tous les pions, afin de ne garder ce flag que pour le dernier pion ayant fait un double pas.
+- canBeCapturedEnPassant : Attribut / indicateur booléen utilisé pour marquer un pion qui vient de faire un double pas et qui peut donc être capturé en passant au coup suivant.
 Avancée et Difficultés
-targetsquarelegal :retourne une collection qui contienttous les square que la pion peut aller et/ou manger 
-captureMoves :retourne une collection des square ou la pion peut manger 
-canbeCaptureDiagonly :true si il y a une piece dans le diagonale  de couleur different (ca veut dire s'il peut manger dans le digonale)
-une variable booléen pour chaque pion pour dire si elle peu etre capturé enPassant ou pas ,la valeur de cette variable est initialisé à faux ,et aprés attribué par la fonction 
-recordMovementOf qui va attribué la valeur (true ou false) en calculatn si la pion est dans la position initial et a bouger de deux case alors true 
+- targetsquarelegal :retourne une collection qui contienttous les square que la pion peut aller et/ou manger 
+- captureMoves :retourne une collection des square ou la pion peut manger 
+- canbeCaptureDiagonly :true si il y a une piece dans le diagonale  de couleur different (ca veut dire s'il peut manger dans le digonale)
+- une variable booléen pour chaque pion pour dire si elle peu etre capturé enPassant ou pas ,la valeur de cette variable est initialisé à faux ,et aprés attribué par la fonction 
+- recordMovementOf qui va attribué la valeur (true ou false) en calculatn si la pion est dans la position initial et a bouger de deux case alors true 
 
 ## Fonctionnalités implémentées et testées :
 Mouvement d’une case en avant,
