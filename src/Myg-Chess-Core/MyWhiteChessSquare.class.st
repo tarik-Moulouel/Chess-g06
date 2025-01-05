@@ -51,7 +51,8 @@ MyWhiteChessSquare >> renderQueen: aPiece [ [
 { #category : 'rendering' }
 MyWhiteChessSquare >> renderRook: aPiece [ [
 	^ aPiece isWhite
-		  ifFalse: ['T']
 		  ifTrue: ['R']
+		  ifFalse: ['T']
+		
 ]
 ]
