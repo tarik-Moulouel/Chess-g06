@@ -60,21 +60,21 @@ Avancée et Difficultés
 - recordMovementOf qui va attribué la valeur (true ou false) en calculatn si la pion est dans la position initial et a bouger de deux case alors true 
 
 ## Fonctionnalités implémentées et testées :
-Mouvement d’une case en avant,
-Mouvement initial de deux cases (avec test isInInitialPosition),
-Capture en diagonale.
+* Mouvement d’une case en avant,
+* Mouvement initial de deux cases (avec test isInInitialPosition),
+* Capture en diagonale.
 En passant :
-J’ai tenté de garder la trace du dernier mouvement de pion (recordMovementOf:) et de surcharger moveTo: dans MyPawn pour gérer la capture en passant.
-Problème : le retrait du pion adverse ne fonctionne pas encore correctement, et la capture en passant n’est pas finalisée.
-Des essais avec l’héritage (pour spécialiser moveTo:) n’ont pas entièrement résolu la logique.
+-J’ai tenté de garder la trace du dernier mouvement de pion (recordMovementOf:) et de surcharger moveTo: dans MyPawn pour gérer la capture en passant.
+-Problème : le retrait du pion adverse ne fonctionne pas encore correctement, et la capture en passant n’est pas finalisée.
+- Des essais avec l’héritage (pour spécialiser moveTo:) n’ont pas entièrement résolu la logique.
 En résumé, toutes les fonctionnalités liées aux pions (hormis l’en passant) sont opérationnelles et testées.
  L’en passant reste partiellement implémenté et nécessite un débogage supplémentaire pour comprendre pourquoi je reussi pas à garder la dernier deplacement de pion dans la fonctionrecordmovementOf.
 ## test réalisé 
 J’ai créé une classe MyPawnTest pour couvrir les principaux comportements du pion :
 
-testCaptureDiagonly : vérifie qu’un pion peut bien capturer en diagonale.
-testMoves et testfirsMoves : testent respectivement le déplacement standard d’une case et le double pas en début de partie.
-testEnPassantMove : tente de s’assurer que la capture en passant fonctionne, mais le test est encore instable (jaune) car la fonctionnalité n’est pas finalisée.
+* testCaptureDiagonly : vérifie qu’un pion peut bien capturer en diagonale.
+*testMoves et testfirsMoves : testent respectivement le déplacement standard d’une case et le double pas en début de partie.
+*testEnPassantMove : tente de s’assurer que la capture en passant fonctionne, mais le test est encore instable (jaune) car la fonctionnalité n’est pas finalisée.
 # Conclusion
 Grâce à ce kata, j’ai amélioré la couverture de tests pour les déplacements des pions et appliqué diverses techniques de débogage.
  Les fonctionnalités standard (déplacements avant, capture diagonale, double pas) sont abouties, tandis que l’en passant demeure à finaliser.
