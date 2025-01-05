@@ -10,7 +10,7 @@ Le code est testé sous Pharo 12. Pour l’installer :
 
 ```
 Metacello new
-	repository: 'github://tarik-Moulouel/Chess-g06:main';
+	repository: 'github://tarik-Moulouel/Chess:main';
 	baseline: 'MygChess';
 	onConflictUseLoaded;
 	load.
