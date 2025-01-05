@@ -39,6 +39,8 @@ MyBlackChessSquare >> renderPawn: aPiece [ [
 
 { #category : 'rendering' }
 MyBlackChessSquare >> renderQueen: aPiece [ [
+	
+	
 	^ aPiece isWhite
 		  ifFalse: ['w']
 		  ifTrue: ['q']
