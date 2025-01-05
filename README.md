@@ -169,3 +169,35 @@ lors du choix de promotion.
 
 ## GitHub du projet : 
 https://github.com/tarik-Moulouel/Chess-g06
+
+
+
+
+# Kata Refactor piece rendering (MOULOUEL Tarik ) :
+
+## Introduction
+
+- Je me suis occupé de la prtie refactoring du projet Chess en Pharo, ce kata est kata trés libre dans le sens ou le refactoring d'un code peut se faire de différentes maniéres.
+
+## Ce que j'ai fait 
+
+-  Dans un premier temps j'ai commencé par écrire les tests qui me permetteront de bien comprendre comment fonctionne le projet mais aussi pour appliquer le principe de TDD, j'ai notamment commencé par écrire les tests de MyChessSquare une classe fondamentale du projet, j'ai vérifié comment sont affichées les piéces comme la méthode testRenderBishop qui vérefié le bon affichage du Bishop et j'ai fait de meme pour les autres piéces.
+-  Après les tests, j'ai commncé à réflichir sur comment refactoriser le code, j'ai dans un premier temps constaté que les méthodes de render dans MyChessSquare étaient pas trés longues et donc il fallait absolument trouver une solution, j'ai donc crée deux classes MyBlackChessSquare et MyWhiteChessSquare qui héritent de MyChessSquare qui est à présent abstract car les méthodes render des pieces sont abstaites vu que je les ai défénies dans les sousclasses, donc par exemple pour les render bishop, j'ai deux méthodes (renderWhiteBishop et renderBlackBishop). 
+- J'ai fait la démarche précedente pour :
+      - Eliminer le code répétitif;
+      - Single Responsibility Principle : qui est un des principes de la POO, qui veut dire que la classe MyChessSquare devient abstraite : son rôle est de définir un corps commun  à toutes les cases. Les sous-classes concrètes se chargent d’implémenter les méthodes de rendu en fonction de la couleur. je supprime ainsi la responsabilité de « savoir comment rendre une pièce blanche/noire » de la classe générale, au profit d’une responsabilisation par type de case.
+      - Open/Closed Principle : Qui est un autres principe SOLID, Si un jour je veux ajouter un nouveau type de case, je peux créer une nouvelle sous-classe et implémenter les comportements de rendu spécifiques sans modifier le code des classes existantes. Cela réduit le risque d’erreurs et de régressions.
+  - Pour conclure mon Kata, j'ai également ajouté des tests pour m'assurer du bon fonctionnement de ma logique avec notamment les pieces noires et blanches.
+
+## Difficultés rencontrées : 
+
+- J'ai rencontré des difficultés dans l'affichage des mes piéces, En effet mes tests fonctionnent bel et bien mais j'ai toujours un affichage bizzare quand je lance le jeu, donc c'est pour ça que j'ai crée une nouvelle branche Refactoring, ou j'ai efféctué mes commits que j'ai pas ajoué à la Branche Main car j'ai pas envie d'impacter ce qu'a fait Karim et Yassine, donc mes derniers commit se trouvent uniquement dans la Branche Refactor mais pas dans La branche Main.
+- Parmi les problémes que j'ai pu rencobtrer et comme l'a souligné Karim, Lors de l’exécution du jeu, une erreur s’est produite indiquant que le receveur de la méthode doit être un booléen et à chaque fois que je fais bouger une pièce l'erreur s'affiche et ainsi de suite.
+- J'ai meme essayé de faire le refactoring remove Nil Checks en créant une novelle classe EmptyPiece qui hérite de Piece qui par la suite remplacera Nil mais à cause du probléme mentionné précedemment j'ai pas pu y arriver.
+
+## Conclusion : 
+- Ayant déja fait du refactroing en GL, je dois dire que le refactoring de cette année est beaucoup plus intéressant dans le sens ou on avait un jeu et donc c'était plus simple pour véréfier, et que cette année on avait vraiment touché au code, contrairement à l'année précedente ou on avait fait du refactoring sur les projet à 2000 classes et donc on faisait que changer le nom des méthodes par peur de casser tout de projet.
+
+  ## GitHub du projet : 
+	https://github.com/tarik-Moulouel/Chess-g06
+.
