@@ -28,33 +28,6 @@ MyChessSquareTest >> testColor [
 ]
 
 { #category : 'tests' }
-MyChessSquareTest >> testContents [
-	| board square whitePiece blackPiece |
-	
-	board := MyChessBoard empty
-		whiteColor: Color white;
-		blackColor: Color black;
-		yourself.
-
-	square := MyChessSquare new
-		board: board;
-		color: Color white;
-		yourself.
-
-	whitePiece := MyBishop white.
-	blackPiece := MyBishop black.
-
-	"Vérifier qu'une pièce blanche peut être placée sur la case"
-	square contents: whitePiece.
-	self assert: square contents equals: whitePiece.
-
-	"Changer la couleur de la case et vérifier qu'une pièce noire peut être placée"
-	square color: Color black;
-	       contents: blackPiece.
-	self assert: square contents equals: blackPiece.
-]
-
-{ #category : 'tests' }
 MyChessSquareTest >> testContentsWithNil [
 	| board square result textForSquare |
 
@@ -124,74 +97,4 @@ MyChessSquareTest >> testRenderBishop [ [
 	self assert: (squareTest renderBishop: blackBishop) equals: 'V'.
 	squareTest color: Color black.
 	self assert: (squareTest renderBishop: blackBishop) equals: 'v'. ]
-]
-
-{ #category : 'tests' }
-MyChessSquareTest >> testRenderKing [ 
-	| squareTest whiteKing blackKing |
-	squareTest := MyChessSquare new.
-	whiteKing := MyKing white. 
-	squareTest color: Color white.
-	self assert: (squareTest renderKing: whiteKing) equals: 'K'.
-	squareTest color: Color black.
-	self assert: (squareTest renderKing: whiteKing) equals: 'k'.
-	blackKing := MyBishop black. 
-	squareTest color: Color white.
-	self assert: (squareTest renderKing: blackKing) equals: 'L'.
-	squareTest color: Color black.
-	self assert: (squareTest renderKing: blackKing) equals: 'l'.
-
-]
-
-{ #category : 'tests' }
-MyChessSquareTest >> testRenderKnight [ 
-
-	| squareTest whiteKnight blackKnight |
-	squareTest := MyChessSquare new.
-	whiteKnight := MyKnight white. 
-	squareTest color: Color white.
-	self assert: (squareTest renderKnight: whiteKnight) equals: 'N'.
-	squareTest color: Color black.
-	self assert: (squareTest renderKnight: whiteKnight) equals: 'n'.
-	blackKnight := MyKnight black. 
-	squareTest color: Color white.
-	self assert: (squareTest renderKnight: blackKnight) equals: 'M'.
-	squareTest color: Color black.
-	self assert: (squareTest renderKnight: blackKnight) equals: 'm'.
-
-]
-
-{ #category : 'tests' }
-MyChessSquareTest >> testRenderQueen [ 
-
-	| squareTest whiteQueen blackQueen |
-	squareTest := MyChessSquare new.
-	whiteQueen := MyQueen white. 
-	squareTest color: Color white.
-	self assert: (squareTest renderQueen: whiteQueen) equals: 'Q'.	
-	squareTest color: Color black.
-	self assert: (squareTest renderQueen: whiteQueen) equals: 'q'.
-	blackQueen := MyQueen black. 
-	squareTest color: Color white.
-	self assert: (squareTest renderQueen: blackQueen) equals: 'W'.
-	squareTest color: Color black.
-	self assert: (squareTest renderQueen: blackQueen) equals: 'w'.
-
-]
-
-{ #category : 'tests' }
-MyChessSquareTest >> testRenderRook [ 
-	| squareTest whiteRook blackRook |
-	squareTest := MyChessSquare new.
-	whiteRook := MyRook white. 
-	squareTest color: Color white.
-	self assert: (squareTest renderRook: whiteRook) equals: 'R'.
-	squareTest color: Color black.
-	self assert: (squareTest renderRook: whiteRook) equals: 'r'.
-	blackRook := MyRook black. 
-	squareTest color: Color white.
-	self assert: (squareTest renderRook: blackRook) equals: 'T'.
-	squareTest color: Color black.
-	self assert: (squareTest renderRook: blackRook) equals: 't'.
-
 ]

@@ -45,6 +45,12 @@ MyChessSquare >> + aPoint [
 	^ board at: column , file ifAbsent: [ ^ nil ]
 ]
 
+{ #category : 'api - text weight' }
+MyChessSquare >> black [ [ 
+^ MyBlackChessSquare new
+]
+]
+
 { #category : 'accessing' }
 MyChessSquare >> board [
 	^ board
@@ -199,80 +205,44 @@ MyChessSquare >> printOn: aStream [
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderBishop: aPiece [
+MyChessSquare >> renderBishop: aPiece [ [     
 
-	^ aPiece isWhite
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'B' ]
-				  ifTrue: [ 'b' ] ]
-		  ifFalse: [
-			  color isBlack
-				  ifFalse: [ 'V' ]
-				  ifTrue: [ 'v' ] ]
+	self subclassResponsibility
+]
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderKing: aPiece [
-	| pieceSymbol |
-	pieceSymbol := aPiece isWhite ifTrue: [ 'K' ] ifFalse: [ 'L' ].
-	^ color isBlack ifTrue: [ pieceSymbol asLowercase ] ifFalse: [ pieceSymbol ].
+MyChessSquare >> renderKing: aPiece [ [  
+self subclassResponsibility
+]
 
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderKnight: aPiece [
+MyChessSquare >> renderKnight: aPiece [ [   
 
-	^ aPiece isWhite
-		  ifFalse: [ color isBlack
-				  ifFalse: [ 'M' ]
-				  ifTrue: [ 'm' ] ]
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'N' ]
-				  ifTrue: [ 'n' ] ]
+	self subclassResponsibility
+]
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderPawn: aPiece [
+MyChessSquare >> renderPawn: aPiece [ [    
 
-	^ aPiece isWhite
-		  ifFalse: [
-			  color isBlack
-				  ifFalse: [ 'O' ]
-				  ifTrue: [ 'o' ] ]
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'P' ]
-				  ifTrue: [ 'p' ] ]
+	self subclassResponsibility ]
+
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderQueen: aPiece [
-
-	^ aPiece isWhite
-		  ifFalse: [
-			  color isBlack
-				  ifFalse: [ 'W' ]
-				  ifTrue: [ 'w' ] ]
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'Q' ]
-				  ifTrue: [ 'q' ] ]
+MyChessSquare >> renderQueen: aPiece[ [
+	self subclassResponsibility
+]
 ]
 
 { #category : 'rendering' }
-MyChessSquare >> renderRook: aPiece [
+MyChessSquare >> renderRook: aPiece [ [    
 
-	^ aPiece isWhite
-		  ifFalse: [
-			  color isBlack
-				  ifFalse: [ 'T' ]
-				  ifTrue: [ 't' ] ]
-		  ifTrue: [
-			  color isBlack
-				  ifFalse: [ 'R' ]
-				  ifTrue: [ 'r' ] ]
+self subclassResponsibility
+]
 ]
 
 { #category : 'accessing' }

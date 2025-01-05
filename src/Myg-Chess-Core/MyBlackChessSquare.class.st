@@ -5,6 +5,13 @@ Class {
 	#package : 'Myg-Chess-Core'
 }
 
+{ #category : 'initialization' }
+MyBlackChessSquare >> initialize [ [
+	super initialize.
+	color := Color black
+]
+]
+
 { #category : 'rendering' }
 MyBlackChessSquare >> renderBishop: aPiece [ [
 	^ aPiece isWhite
